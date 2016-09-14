@@ -9,9 +9,9 @@ Example use
 -----------
 
     cat /tmp/extra_host_config
-		1.1.1.1 my.special.server.example.com
+    1.1.1.1 my.special.server.example.com
     sudo edittool -edit /etc/hosts -ensure /tmp/extra_host_config
-		cat /etc/hosts
+    cat /etc/hosts
     ##
     # Host Database
     #
