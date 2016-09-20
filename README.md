@@ -27,6 +27,16 @@ Example use
 
 Run the same command as many times as you want there should be no side effects.
 
+Use in scripting
+----------------
+
+    #!/bin/bash
+    set -e -u
+    # ...
+    # set up /tmp/extra_host_config
+    # ...
+    sudo edittool -edit /etc/hosts -ensure /tmp/extra_host_config || [ $? -eq 2 ]
+
 Return values
 -------------
 
