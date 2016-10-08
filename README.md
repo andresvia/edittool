@@ -59,8 +59,8 @@ Without the `-reload` flag.
 
 With the `-reload` flag.
 
- - 66 errors during edit
- - Return code for the reload command
+ - 0 - nothing happened / reload succeed
+ - anything else - error / reload return code
 
 Potential uses
 --------------
