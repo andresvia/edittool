@@ -21,14 +21,16 @@ Example use
     127.0.0.1 localhost
     255.255.255.255 broadcasthost
     ::1             localhost
-    # EDITTOL GENERATED DO NOT EDIT
+    # EDITTOOL GENERATED DO NOT EDIT
     1.1.1.1 my.special.server.example.com
-    # EDITTOL GENERATED DO NOT EDIT
+    # EDITTOOL GENERATED DO NOT EDIT
 
 Run the same command as many times as you want there should be no side effects.
 
 Use in scripting
 ----------------
+
+Example 1.
 
     #!/bin/bash
     set -e -u
@@ -37,17 +39,33 @@ Use in scripting
     # ...
     sudo edittool -edit /etc/hosts -ensure /tmp/extra_host_config || [ $? -eq 2 ]
 
+Example 2.
+
+    #!/bin/bash
+    set -e -u
+    # ...
+    # set up /tmp/my_service_extra_config
+    # ...
+    sudo edittool -edit /etc/my_service.conf -ensure /tmp/my_service_extra_config -reload 'sudo systemctl restart my_service'
+
 Return values
 -------------
+
+Without the `-reload` flag.
 
  - 0 - nothing happened
  - 2 - changes were made
  - anything else - error
 
+With the `-reload` flag.
+
+ - 66 errors during edit
+ - Return code for the reload command
+
 Potential uses
 --------------
 
-Edit files before real provisioning kicks-in, like:
+Edit files before [real](https://github.com/provisioningsucks/tools) provisioning kicks-in (especially services or configuration files without `conf.d` style configuration), like:
 
  - `/etc/fstab`
  - `/etc/hosts`
